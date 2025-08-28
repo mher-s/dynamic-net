@@ -1,20 +1,19 @@
 import { memo } from 'react';
 
-type CellProps = {
+interface CellComponentProps {
 	value: number;
 	updated: boolean;
-};
+}
 
-const Cell = memo(({ value, updated }: CellProps) => {
-	const bgColor = updated ? 'bg-green-300 dark:bg-green-700' : 'bg-white dark:bg-gray-800';
-	const textColor = updated ? 'text-green-800 dark:text-green-100' : 'text-gray-700 dark:text-gray-300';
+export const CellComponent = memo(({ value, updated }: CellComponentProps) => {
+	const bgColor = updated ? 'bg-yellow-400 dark:bg-yellow-600' : 'bg-blue-200 dark:bg-gray-700';
+	const textColor = updated ? 'text-black' : 'text-gray-800 dark:text-gray-200';
 
 	return (
-		<div className={`flex items-center justify-center h-12 rounded-lg shadow-md transition-colors duration-300 ease-linear ${bgColor}`}>
-			<span className={`font-mono text-lg font-semibold ${textColor}`}>{value}</span>
+		<div
+			className={`flex items-center justify-center h-16 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 ${bgColor} ${textColor}`}
+			style={{ minWidth: '50px' }}>
+			<span className='font-mono text-sm font-semibold'>{value}</span>
 		</div>
 	);
 });
-
-const CellComponent = memo(Cell);
-export default CellComponent;
